@@ -1,5 +1,5 @@
 SET parquet.compression=SNAPPY;
-CREATE EXTERNAL TABLE partitioned_data (
+CREATE TABLE partitioned_data (
 station STRING,
 date STRING,
 otype STRING,
