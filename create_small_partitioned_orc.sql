@@ -1,4 +1,4 @@
-CREATE TABLE partitioned_data_small (
+CREATE TABLE partitioned_data_small_orc (
 station STRING,
 date STRING,
 otype STRING,
@@ -15,4 +15,4 @@ STORED AS ORC
 LOCATION 's3://de.altusinsight.data.baselpartitioned.small/orc';
 
 -- populate partitioned table from raw_data table
--- INSERT OVERWRITE  TABLE partitioned_data_small  PARTITION(station_prefix) SELECT station, date, otype, ovalue, omflag, oqflag, osflag, otime, REGEXP_EXTRACT(station, '^([A-Za-z]+)(.*)', 1) FROM raw_data_small;
+-- INSERT OVERWRITE  TABLE partitioned_data_small_orc  PARTITION(station_prefix) SELECT station, date, otype, ovalue, omflag, oqflag, osflag, otime, REGEXP_EXTRACT(station, '^([A-Za-z]+)(.*)', 1) FROM raw_data_small;

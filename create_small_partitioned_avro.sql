@@ -15,4 +15,4 @@ STORED AS AVRO
 LOCATION 's3://de.altusinsight.data.baselpartitioned.small/avro';
 
 -- populate partitioned table from raw_data table
--- INSERT OVERWRITE  TABLE partitioned_data_small  PARTITION(station_prefix) SELECT station, date, otype, ovalue, omflag, oqflag, osflag, otime, REGEXP_EXTRACT(station, '^([A-Za-z]+)(.*)', 1) FROM raw_data_small;
+-- INSERT OVERWRITE  TABLE partitioned_data_small_avro  PARTITION(station_prefix) SELECT station, date, otype, ovalue, omflag, oqflag, osflag, otime, REGEXP_EXTRACT(station, '^([A-Za-z]+)(.*)', 1) FROM raw_data_small;
