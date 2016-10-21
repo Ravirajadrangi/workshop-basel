@@ -2,3 +2,5 @@ SET hive.exec.dynamic.partition.mode=non-strict;
 SET hive.exec.dynamic.partition=true;
 SET hive.exec.max.dynamic.partitions=2048;
 SET hive.exec.max.dynamic.partitions.pernode=500;
+SET hive.exec.compress.output=true;
+SET avro.output.codec=snappy;
