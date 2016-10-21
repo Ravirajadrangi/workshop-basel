@@ -4,3 +4,7 @@ SET hive.exec.max.dynamic.partitions=2048;
 SET hive.exec.max.dynamic.partitions.pernode=500;
 SET hive.exec.compress.output=true;
 SET avro.output.codec=snappy;
+-- SET hive.merge.mapfiles=false;
+-- SET hive.merge.mapredfiles=false;
+-- one mapper for each file, don't combine
+-- SET hive.input.format=org.apache.hadoop.hive.ql.io.HiveInputFormat;
