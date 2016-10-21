@@ -11,7 +11,7 @@ otime STRING
 PARTITIONED BY (
 station_prefix STRING
 )
-STORED AS ORC
+STORED AS AVRO
 LOCATION 's3://de.altusinsight.data.baselpartitioned.small/avro';
 
 -- populate partitioned table from raw_data table
