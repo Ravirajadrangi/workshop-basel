@@ -82,3 +82,6 @@ pig -useHCatalog -f workshop-basel/pig/simple_script_orc.pig
 ### Interactive Pig
 
 You can also open the Pig shell and execute the commands from the script one after another or play around and compute something more useful the the number of records.
+```
+pig -useHCatalog
+```
