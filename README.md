@@ -61,3 +61,24 @@ $ hive
 hive> INSERT OVERWRITE TABLE partitioned_data_small_orc  PARTITION(station_prefix) SELECT station, date, otype, ovalue, omflag, oqflag, osflag, otime, REGEXP_EXTRACT(station, '^([A-Za-z]+)(.*)', 1) FROM raw_data_small;
 ```
 
+## Run Pig scripts
+
+Now that we've set up the tables within Hive we can use them (via HCatalog) in other tools. One of them is Pig. Pig can load data via HCatalog in any format that is supported by Hive and HCatalog. In the next section we'll simply load the data and count the number of records:
+
+### Read data from Avro files
+
+Start Pig and execute the script. The script reads the data from the Avro partitioned table and counts the number of elements.
+```
+pig -useHCatalog -f workshop-basel/pig/simple_script_avro.pig
+```
+
+### Read dara from ORC files
+
+Start Pig and execute the script. The script reads the data from the ORC partitioned table and counts the number of elements.
+```
+pig -useHCatalog -f workshop-basel/pig/simple_script_orc.pig
+```
+
+### Interactive Pig
+
+You can also open the Pig shell and execute the commands from the script one after another or play around and compute something more useful the the number of records.
