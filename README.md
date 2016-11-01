@@ -32,16 +32,16 @@ cp workshop-basel/hive/hiverc $HOME/.hiverc
 hive -v -f workshop-basel/hive/create_small_table.sql
 ```
 
-The data in the table ```raw_data``` are in ascii files. In this case Hadoop uses the TextInputFormat to read and parse the data which is usually in CSV format. While this format has the advantage of being easily readable it's not the most efficient way to store and process data. There are other file formats which store the data more efficiently and allow Hadoop to process the data more efficiently. Two common formats are the AvroFileFormat and the ORCFileFormat. The next section shows how data can be converted (and partitioned) from one format into another by using Hive.
+The data in the table ```raw_data``` are ascii files. In this case Hadoop uses the TextInputFormat to read and parse the data which is usually in CSV format. While this format has the advantage of being easily readable it's not the most efficient way to store and process data. There are other file formats which store the data more efficiently and allow Hadoop to process the data more efficiently. Two common formats are the AvroFileFormat and the ORCFileFormat. The next section shows how data can be converted (and partitioned) from one format into another by using Hive.
 
 ### Repartition data and convert into AvroFileFormat
 
-First the new table needs to be created. Please run the following command to create the new table containing the data as Avro files. (Make sure the bucket exists in S3, please modify the file ```hive/create_small_partitioned_avro.sql``` and change the destination bucket after the ```LOCATION``` keyword):
+First the new table needs to be created. Please run the following command to create the new table containing the data as Avro files. (Make sure the bucket exists in S3, please modify the file ```hive/create_small_partitioned_avro.sql``` and change the destination bucket after the ```LOCATION``` keyword, also have at least one directory - an error will be thrown if ```LOCATION``` is only a bucket):
 
 ```
 hive -v -f workshop-basel/hive/create_small_partitioned_avro.sql
 ```
-Now that the table has been created the insert statement can be started to reads the data from the table raw_data_small and writes the data in the table partitioned_data_small_avro. While the data is converted it's also partitioned by using a station predix (first 2 or 3 letters from the station name). Log into the Hive shell:
+Now that the table has been created the insert statement can be started that reads the data from the table ```raw_data_small``` and writes the data in the table ```partitioned_data_small_avro```. While the data is converted it's also partitioned by using a station prefix (first 2 or 3 letters from the station name). Log into the Hive shell:
 ```
 $ hive
 hive> INSERT OVERWRITE TABLE partitioned_data_small_avro  PARTITION(station_prefix) SELECT station, date, otype, ovalue, omflag, oqflag, osflag, otime, REGEXP_EXTRACT(station, '^([A-Za-z]+)(.*)', 1) FROM raw_data_small;
@@ -91,7 +91,7 @@ pig -useHCatalog
 
 ### Interactive Spark
 
-The interactive session can be done using the ```spark-shell```, check out ```spark/sql.scala``` for a few examples on how to use the Spark context and the Spark SQL context:
+The interactive session can be conducted using the ```spark-shell```, check out ```spark/sql.scala``` for a few examples on how to use the Spark context and the Spark SQL context:
 
 #### Spark Context
 ```
