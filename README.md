@@ -74,7 +74,7 @@ Start Pig and execute the script. The script reads the data from the Avro partit
 pig -useHCatalog -f workshop-basel/pig/simple_script_avro.pig
 ```
 
-### Read dara from ORC files
+### Read data from ORC files
 
 Start Pig and execute the script. The script reads the data from the ORC partitioned table and counts the number of elements.
 ```
@@ -89,18 +89,18 @@ pig -useHCatalog
 ```
 
 
-### Interactive Spark
+## Interactive Spark
 
 The interactive session can be conducted using the ```spark-shell```, check out ```spark/sql.scala``` for a few examples on how to use the Spark context and the Spark SQL context:
 
-#### Spark Context
+### Spark Context
 ```
 $ spark-shell
 spark> sqlContext.sql("select count(*) from partitioned_data_small_avro").show()
 
 ```
 
-#### Spark SQL Context
+### Spark SQL Context
 ```
 $ spark-shell
 spark> sc.textFile("s3://de.altusinsight.data.basel.small/*").count()
