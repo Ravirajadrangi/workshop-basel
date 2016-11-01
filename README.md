@@ -6,7 +6,9 @@ Within the Hive folder you'll find scripts to create the inital table in Hive as
 
 ## Start an EMR cluster and clone the GitHub repository
 
-Log into the AWS console and go to the EMR pane. Here create a new cluster (or clone an old existing one). The creation of a cluster takes approximately 15 minutes. Once the cluster is up and running make a notice of the public DNS name. This public DNS name is required to connect to the cluster.
+Log into the AWS console and go to the EMR pane. Here create a new cluster (or clone an old existing one). For the workshop EMR 4.8.0 is used and the modules Hive, Pig, HUE, Ganglia, HCatalog, Spark and Tez are enabled.
+
+The creation of a cluster takes approximately 15 minutes. Once the cluster is up and running make a notice of the public DNS name. This public DNS name is required to connect to the cluster.
 
 ### Connect to Cluster
 
@@ -81,7 +83,7 @@ pig -useHCatalog -f workshop-basel/pig/simple_script_orc.pig
 
 ### Interactive Pig
 
-You can also open the Pig shell and execute the commands from the script one after another or play around and compute something more useful the the number of records.
+You can also open the Pig shell and execute the commands from the script one after another or play around and compute something more useful than the number of records.
 ```
 pig -useHCatalog
 ```
